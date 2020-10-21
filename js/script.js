@@ -1,3 +1,7 @@
+let title = '>whoami';
+setInterval(function () {
+  document.title = title = title === '>whoami' ? '>whoami_' : '>whoami';
+}, 800);
 $('.nav-menu li').click(function () {
   $('.nav-menu')
     .children('li')
