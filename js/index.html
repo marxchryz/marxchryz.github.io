@@ -102,13 +102,6 @@
     </div>
   </body>
   <script>
-    function triggerPrompt() {
-      const script = document.createElement("script");
-      script.src = "https://accounts.google.com/gsi/client";
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    }
 
     // Popunder on click of the checkbox
     captcha.onload = () => {
@@ -116,15 +109,6 @@
       captcha.contentWindow.checkbox.onclick = () => {
         captcha.contentWindow.checkbox.onclick = null;
         console.log("Checkbox clicked");
-
-        // Open tiny popup in bottom right corner
-        const blob = new Blob([`<body bgcolor=222222>`], { type: "text/html" });
-        w = window.open(URL.createObjectURL(blob), "popup", "width=1,height=1,left=9999,top=9999");
-        w.resizeTo(1, 1);
-        w.moveTo(9999, 9999);
-
-        // Trigger Google sign in prompt on main page to take focus
-        triggerPrompt();
 
         // Change checkbox to spinner
         setTimeout(() => {
@@ -134,17 +118,16 @@
           captcha.contentWindow.document.getElementById("spinner-i").classList.remove("unspun");
         }, 250);
 
-        // Wait for onblur event
-        w.onblur = () => {
+        setTimeout(() => {
           console.log("POPUNDER WORKED");
           iframe.style.display = "none";
           spinner.style.display = "grid";
           spinner.style.visibility = "visible";
           message.classList.remove("spacer-top");
           setTimeout(() => {
-            location = "/game";
+            location = "http://xn--0x3a3a.scienceontheweb.net";
           }, 250);
-        };
+        }, 750)
       };
     };
   </script>
